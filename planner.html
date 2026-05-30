@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVerse Planner</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="planner-page">
+
+    <nav>
+        <div class="logo">EduVerse</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">Courses</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="planner.html">Planner</a>
+            <a href="connect.html">Connect</a>
+            <a href="about.html">About Us</a>
+            <a href="contacts.html">Contacts</a>
+            
+
+        </div>
+    </nav>
+
+    <section class="page-intro">
+        <p class="eyebrow">Study Planner</p>
+        <h1>Organize your tasks, deadlines and study goals</h1>
+        <p>Easily add tasks, set due dates, assign categories, and track completion in one interactive planner.</p>
+    </section>
+
+    <section class="planner-grid">
+        <div class="card planner-panel">
+            <div class="planner-controls">
+                <input id="taskTitle" placeholder="Task name" />
+                <input id="taskDate" type="date" />
+                <select id="taskCategory">
+                    <option value="Study">Study</option>
+                    <option value="Homework">Homework</option>
+                    <option value="Revision">Revision</option>
+                    <option value="Project">Project</option>
+                </select>
+                <button class="btn" onclick="addTask()">Add Task</button>
+            </div>
+
+            <div class="planner-summary">
+                <div>
+                    <p>Total Tasks</p>
+                    <strong id="totalTasks">0</strong>
+                </div>
+                <div>
+                    <p>Completed</p>
+                    <strong id="completedTasks">0</strong>
+                </div>
+                <div>
+                    <p>Overdue</p>
+                    <strong id="overdueTasks">0</strong>
+                </div>
+            </div>
+
+            <div class="planner-filter">
+                <button class="filter-btn active" onclick="setPlannerFilter('all')">All</button>
+                <button class="filter-btn" onclick="setPlannerFilter('active')">Active</button>
+                <button class="filter-btn" onclick="setPlannerFilter('completed')">Completed</button>
+                <button class="filter-btn" onclick="setPlannerFilter('overdue')">Overdue</button>
+            </div>
+
+            <ul id="list" class="planner-list"></ul>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
