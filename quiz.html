@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVerse Quiz</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="quiz-page">
+
+    <nav>
+        <div class="logo">EduVerse</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">Courses</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="planner.html">Planner</a>
+            <a href="connect.html">Connect</a>
+            <a href="about.html">About Us</a>
+            <a href="contacts.html">Contacts</a>
+            
+        </div>
+    </nav>
+
+    <section class="page-intro">
+        <p class="eyebrow">Interactive Quiz</p>
+        <h1>Boost your learning with instant quiz feedback</h1>
+        <p>Answer questions, track your score, and enjoy a smoother quiz flow with progress tracking.</p>
+    </section>
+
+    <section class="grid quiz-grid">
+        <div class="card quiz-card">
+            <div class="quiz-header">
+                <span id="questionIndex">Question 1 of 5</span>
+                <div class="progress-bar">
+                    <div id="quizProgress" class="progress-fill"></div>
+                </div>
+            </div>
+
+            <h2 id="question">Loading quiz...</h2>
+            <div id="options" class="quiz-options"></div>
+
+            <p id="feedback" class="quiz-feedback"></p>
+
+            <div class="quiz-actions">
+                <button class="btn" id="nextBtn" type="button" onclick="nextQuestion()">Next</button>
+                <button class="btn" id="restartBtn" type="button" onclick="restartQuiz()" hidden>Restart Quiz</button>
+            </div>
+
+            <p id="score" class="quiz-score"></p>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
