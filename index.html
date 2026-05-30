@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVerse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<nav>
+    <div class="nav-left">
+        <div class="avatar-menu">
+            <img src="https://i.pravatar.cc/40?img=32" alt="Sita Sharma, student" class="avatar" role="button" tabindex="0" aria-expanded="false" aria-controls="avatarDropdown" aria-label="Open student menu" onclick="toggleAvatarMenu(event)" />
+            <div class="avatar-dropdown" id="avatarDropdown">
+                <div class="avatar-card">
+                    <strong>Sita Sharma</strong>
+                    <span>Grade 9 • Section B</span>
+                </div>
+                <a href="dashboard.html">Student Profile</a>
+                <a href="courses.html">Learning Plan</a>
+                <a href="planner.html">Attendance & Tasks</a>
+                <a href="contacts.html">Parent Contact</a>
+            </div>
+        </div>
+
+        <div class="logo">EduVerse</div>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="courses.html">Courses</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="quiz.html">Quiz</a>
+        <a href="planner.html">Planner</a>
+        <a href="about.html">About Us</a>
+        <a href="contacts.html">Contact</a>
+    </div>
+</nav>
+
+<section class="hero fade">
+
+    <div class="hero-content">
+
+        <h1>Modern Learning Platform</h1>
+
+        <p class="hero-sub">Search and explore courses instantly</p>
+
+        <div class="search-box">
+            <input id="search" type="text" placeholder="Search courses, e.g. JavaScript" oninput="searchCourses()" autocomplete="off" />
+            <div id="suggestions" class="search-results"></div>
+        </div>
+
+        <div class="hero-actions">
+            <a href="courses.html">
+                <button class="btn">Explore Courses</button>
+            </a>
+
+            <a href="planner.html">
+                <button class="btn-outline">Study Planner</button>
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="stats">
+
+    <div class="stat-card">
+        <h2>500+</h2>
+        <p>Courses</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>50K+</h2>
+        <p>Students</p>
+    </div>
+
+    <div class="stat-card">
+        <h2>4.9★</h2>
+        <p>Rating</p>
+    </div>
+
+</section>
+
+<!-- About and Contact sections removed from the index page per request -->
+
+    <script>
+    function toggleAvatarMenu(event) {
+        const dropdown = document.getElementById('avatarDropdown');
+        const avatar = document.querySelector('.avatar');
+        if (!dropdown || !avatar) return;
+        const isOpen = dropdown.classList.toggle('active');
+        avatar.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (event) event.stopPropagation();
+    }
+
+    // Close when clicking outside
+    window.addEventListener('click', function(event) {
+        const dropdown = document.getElementById('avatarDropdown');
+        const avatar = document.querySelector('.avatar');
+        if (!dropdown || !avatar) return;
+        if (!dropdown.contains(event.target) && !avatar.contains(event.target)) {
+            dropdown.classList.remove('active');
+            avatar.setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Keyboard support: Enter/Space to open, Esc to close
+    document.addEventListener('keydown', function(e) {
+        const avatar = document.querySelector('.avatar');
+        const dropdown = document.getElementById('avatarDropdown');
+        if (!avatar || !dropdown) return;
+        if ((e.key === 'Enter' || e.key === ' ') && document.activeElement === avatar) {
+            e.preventDefault();
+            toggleAvatarMenu();
+        }
+        if (e.key === 'Escape') {
+            dropdown.classList.remove('active');
+            avatar.setAttribute('aria-expanded', 'false');
+            avatar.focus();
+        }
+    });
+</script>
+
+<script src="script.js"></script>
+
+</body>
+</html>
