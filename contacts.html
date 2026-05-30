@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVerse - Contacts</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <script src="script.js"></script>
+
+    <nav>
+        <div class="logo">EduVerse</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">Courses</a>
+            
+            <a href="quiz.html">Quiz</a>
+            <a href="planner.html">Planner</a>
+            <a href="connect.html">Connect</a>
+            <a href="about.html">About Us</a>
+            <a href="contacts.html">Contacts</a>
+            <a href="login.html">login</a>
+        </div>
+    </nav>
+
+    <section class="hero fade">
+        <h1>Get in Touch</h1>
+        <p>Have questions or need support? Send us a message and we’ll get back to you within one business day.</p>
+    </section>
+
+    <section class="grid">
+        <div class="card contact-card">
+            <h2>Contact Information</h2>
+            <p class="contact-item"><strong>Email</strong>eduverse@eduverse.com</p>
+            <p class="contact-item"><strong>Phone</strong>+977 (555) 123-4567</p>
+            <p class="contact-item"><strong>Address</strong>Butwal-18, Knowledge City</p>
+            <p class="contact-item"><strong>Hours</strong>Mon - Fri • 9:00 AM - 6:00 PM</p>
+
+            <div class="social-links">
+                <a href="https://www.twitter.com" target="_blank">Twitter</a>
+                <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            </div>
+        </div>
+
+        <div class="card contact-card">
+            <h2>Send a Message</h2>
+            <form class="contact-form" onsubmit="submitContact(event)" method="POST">
+                <input id="contact-name" type="text" placeholder="Your name" />
+                <input id="contact-email" type="email" placeholder="Your email" />
+                <textarea id="contact-message" placeholder="Tell us how we can help..."></textarea>
+                <button class="btn" type="submit">Send Message</button>
+                <p id="contact-notice" style="margin-top:16px; color:var(--muted);"></p>
+            </form>
+        </div>
+    </section>
+</body>
+</html>
+'@
