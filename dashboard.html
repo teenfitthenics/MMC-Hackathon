@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>EduVerse Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">EduVerse</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">Courses</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="planner.html">Planner</a>
+            <a href="connect.html">Connect</a>
+            <a href="about.html">About Us</a>
+            <a href="contacts.html">Contacts</a>
+            <a href="login.html">login</a>
+        </div>
+    </nav>
+
+    <section class="dashboard-overview page-intro">
+        <p class="eyebrow">Dashboard</p>
+        <h1>Your learning progress and upcoming schedule in one place</h1>
+        <p>Track attendance, deadlines, exam countdowns and your study progress with smart dashboard widgets.</p>
+    </section>
+
+    <section class="dashboard-grid">
+        <div class="card progress-panel">
+            <div class="panel-header">
+                <h2>Learning Progress</h2>
+                <span class="tag">Live</span>
+            </div>
+            <div class="progress-chart">
+                <svg viewBox="0 0 120 120">
+                    <circle class="chart-ring-bg" cx="60" cy="60" r="52" />
+                    <circle id="progressRing" class="chart-ring" cx="60" cy="60" r="52" />
+                </svg>
+                <div class="ring-label">
+                    <span id="progressPercent">0%</span>
+                    <small>Complete</small>
+                </div>
+            </div>
+            <div class="progress-meta">
+                <div>
+                    <span>Tasks completed</span>
+                    <strong id="taskCount">0</strong>
+                </div>
+                <div>
+                    <span>Badges earned</span>
+                    <strong id="badgeCount">0</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="card attendance-panel">
+            <div class="panel-header">
+                <h2>Attendance Tracker</h2>
+            </div>
+            <div class="tracker-row">
+                <span>Attendance</span>
+                <strong id="attendanceRate">0%</strong>
+            </div>
+            <div class="tracker-bar"><div id="attendanceFill" class="tracker-fill"></div></div>
+            <div class="tracker-row">
+                <span>Participation</span>
+                <strong id="participationRate">0%</strong>
+            </div>
+            <div class="tracker-bar"><div id="participationFill" class="tracker-fill"></div></div>
+            <p class="small-text">Maintain attendance and participation to stay ahead in your study plan.</p>
+        </div>
+
+        <div class="card countdown-panel">
+            <div class="panel-header">
+                <h2>Upcoming Exam</h2>
+            </div>
+            <div class="exam-name">Math Final Exam</div>
+            <div id="examCountdown" class="countdown-grid">
+                <div>
+                    <strong id="daysLeft">00</strong>
+                    <small>Days</small>
+                </div>
+                <div>
+                    <strong id="hoursLeft">00</strong>
+                    <small>Hours</small>
+                </div>
+                <div>
+                    <strong id="minutesLeft">00</strong>
+                    <small>Minutes</small>
+                </div>
+                <div>
+                    <strong id="secondsLeft">00</strong>
+                    <small>Seconds</small>
+                </div>
+            </div>
+            <p class="small-text">Get ready for exam day by reviewing study notes and practice tests.</p>
+        </div>
+
+        <div class="card reminders-panel">
+            <div class="panel-header">
+                <h2>Assignment Deadlines</h2>
+            </div>
+            <ul id="deadlineList" class="deadline-list"></ul>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
