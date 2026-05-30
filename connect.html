@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVerse Connect</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="logo">EduVerse</div>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="courses.html">Courses</a>
+            <a href="quiz.html">Quiz</a>
+            <a href="planner.html">Planner</a>
+            <a href="connect.html">Connect</a>
+            <a href="about.html">About Us</a>
+            <a href="contacts.html">Contacts</a>
+            <a href="login.html">login</a>
+        </div>
+    </nav>
+
+    <section class="hero fade">
+        <h1>Teacher & Parent Connect</h1>
+        <p>Direct messaging and update requests for parents and teachers in one secure dashboard.</p>
+    </section>
+
+    <section class="connect-grid fade">
+        <aside class="card teacher-list">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Teacher contacts</p>
+                    <h2>Choose a teacher</h2>
+                </div>
+            </div>
+            <div class="teacher-search">
+                <input id="teacherSearch" type="search" placeholder="Search teachers..." />
+            </div>
+            <div id="teacherContacts" class="teacher-contacts"></div>
+        </aside>
+
+        <main class="card chat-panel">
+            <div class="panel-header">
+                <div>
+                    <p class="eyebrow">Live conversation</p>
+                    <h2 id="chatTitle">Select a teacher to start</h2>
+                </div>
+            </div>
+            <div id="chatHistory" class="chat-history">
+                <div class="empty-state">Select a teacher on the left to view messages and send a direct update.</div>
+            </div>
+            <form id="connectForm" class="contact-form connect-form">
+                <input id="parentName" type="text" placeholder="Parent name" />
+                <input id="subjectLine" type="text" placeholder="Message subject" />
+                <textarea id="messageText" placeholder="Write your message to the teacher..."></textarea>
+                <button class="btn" type="submit">Send Message</button>
+                <p id="connectNotice" style="margin-top:16px; color:var(--muted);"></p>
+            </form>
+        </main>
+    </section>
+
+    <script>
+        const teachers = [
+            { name: "Mr. Sharma", subject: "Math", status: "Online", note: "Review homework progress." },
+            { name: "Ms. Lee", subject: "Science", status: "Online", note: "Lab work feedback available." },
+            { name: "Mrs. Rana", subject: "English", status: "Away", note: "Essay revision scheduled." },
+            { name: "Mr. Koirala", subject: "Computer Science", status: "Online", note: "Project mentoring session." }
+        ];
+
+        const conversations = {
+            "Mr. Sharma": [
+                { from: "Teacher", text: "Hello, your child is doing well in algebra. Let's discuss the next assignment." }
+            ],
+            "Ms. Lee": [
+                { from: "Teacher", text: "I have updated the lab report feedback. Please check the portal." }
+            ],
+            "Mrs. Rana": [
+                { from: "Teacher", text: "The reading assignment is due next week. Kindly review it at home." }
+            ],
+            "Mr. Koirala": [
+                { from: "Teacher", text: "Coding project samples are ready. Let me know if you would like an extra session." }
+            ]
+        };
+
+        let activeTeacher = null;
+
+        function renderTeacherList() {
+            const container = document.getElementById("teacherContacts");
+            if (!container) return;
+            container.innerHTML = "";
+            teachers.forEach(teacher => {
+                const card = document.createElement("button");
+                card.type = "button";
+                card.className = "teacher-item";
+                card.innerHTML = `
+                    <div>
+                        <h3>${teacher.name}</h3>
+                        <p>${teacher.subject}</p>
+                    </div>
+                    <span class="status ${teacher.status.toLowerCase()}">${teacher.status}</span>
+                `;
+                card.onclick = () => selectTeacher(teacher.name);
+                container.appendChild(card);
+            });
+        }
+
+        function selectTeacher(name) {
+            activeTeacher = name;
+            document.getElementById("chatTitle").innerText = name;
+            renderConversation();
+        }
+
+        function renderConversation() {
+            const history = document.getElementById("chatHistory");
+            if (!history) return;
+            history.innerHTML = "";
+            const messages = conversations[activeTeacher] || [];
+            if (messages.length === 0) {
+                history.innerHTML = '<div class="empty-state">No messages yet. Send the first note.</div>';
+                return;
+            }
+            messages.forEach(message => {
+                const bubble = document.createElement("div");
+                bubble.className = `chat-bubble ${message.from.toLowerCase()}`;
+                bubble.innerHTML = `<p>${message.text}</p><span>${message.from}</span>`;
+                history.appendChild(bubble);
+            });
+            history.scrollTop = history.scrollHeight;
+        }
+
+        function filterTeachers() {
+            const query = document.getElementById("teacherSearch").value.toLowerCase();
+            document.querySelectorAll(".teacher-item").forEach(item => {
+                const text = item.innerText.toLowerCase();
+                item.style.display = text.includes(query) ? "flex" : "none";
+            });
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            renderTeacherList();
+            const search = document.getElementById("teacherSearch");
+            if (search) {
+                search.addEventListener("input", filterTeachers);
+            }
+            const form = document.getElementById("connectForm");
+            if (form) {
+                form.addEventListener("submit", event => {
+                    event.preventDefault();
+                    const name = document.getElementById("parentName").value.trim();
+                    const subject = document.getElementById("subjectLine").value.trim();
+                    const message = document.getElementById("messageText").value.trim();
+                    const notice = document.getElementById("connectNotice");
+                    if (!activeTeacher) {
+                        notice.innerText = "Please select a teacher first.";
+                        return;
+                    }
+                    if (!name || !subject || !message) {
+                        notice.innerText = "Please complete all fields.";
+                        return;
+                    }
+                    const chat = conversations[activeTeacher] || [];
+                    chat.push({ from: "Parent", text: `${subject}: ${message}` });
+                    conversations[activeTeacher] = chat;
+                    renderConversation();
+                    notice.innerText = `Message sent to ${activeTeacher}.`;
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
